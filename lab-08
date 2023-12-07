@@ -1,0 +1,84 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int get_value()
+{
+    return 5;
+}
+
+struct Pet {
+    std::string name;
+    int age;
+    double weight;
+    int number_of_visit;
+};
+
+struct Person {
+    string name;
+    string surname;
+    int    age;
+    double weight;
+    double height;
+    Pet    fav_pet;
+};
+
+void print_pet(Pet &pet)
+{
+    std::cout << "Name: " << pet.name << std::endl;
+    std::cout << "Age: " << pet.age << std::endl;
+    std::cout << "Weight: " << pet.weight << std::endl;
+}
+
+void print_person(Person &p)
+{
+    
+    std::cout << "Name: " << p.name << std::endl;
+    std::cout << "Age: " << p.age << std::endl;
+    std::cout << "Weight: " << p.weight << std::endl;
+    print_pet(p.fav_pet);
+}
+
+Person get_person_info()
+{
+    Person person;
+
+    cin >> person.name ;
+    std::cout << "Name: " << endl;
+    cin >> person.surname;
+    std::cout << "surname: " << endl;
+    cin >> person.age ;
+    std::cout << "age: " << endl;
+    cin >> person.weight ;
+    std::cout << "weight: " << endl;
+    cin >> person.height ;
+    std::cout << "height: " << endl;
+
+    return person;
+}
+
+
+int main()
+{
+    
+  
+    
+
+    
+    vector<Person> Persons;
+    
+    Persons.emplace_back(get_person_info());
+    Persons.emplace_back(get_person_info());
+    Persons.emplace_back(get_person_info());
+    
+    for (auto &p : Persons) {
+        print_person(p);
+    }
+   
+
+
+
+    return 0;
+}
