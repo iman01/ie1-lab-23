@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <cstdlib>              // Header with rand() and srand() functions
+#include <ctime>                // Header with time() function
+using namespace std;
+struct ExchangeRate
+{
+    string date;
+    float rate;
+};
+void fill_exchange(std::vector<ExchangeRate> &exchange_rate)
+{
+    srand(time(nullptr));
+    for(int i = 1; i < 31 ; i++)
+    {
+        ExchangeRate exchange;
+        exchange.date = "2020-01-" + to_string(i);
+        exchange.rate = (rand() % 150 + 300.0) / 100.0 ;
+        cout << exchange.rate << endl;
+        exchange_rate.emplace_back(exchange);
+    }
+}
+
+
+
+
+bool myfn(ExchangeRate i, ExchangeRate j) { return i.rate  < j.rate; }
+
+
+string min_date(std::vector<ExchangeRate> exchange_rate){
+
+    auto min_elem = *std::min_element(exchange_rate.begin(),exchange_rate.end(), myfn );
+    return min_elem.date;
+}
+
+
+
+void print_2d(std::vector<std::vector<int>> my_vector_2d)
+{
+    for(auto my_vector : my_vector_2d)
+    {
+        for(auto elem : my_vector)
+        {
+            std::cout << elem << "\t";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main()
+{
+
+    const int number_of_rows = 5;
+    const int number_of_cols = 5;
+
+    std::vector<std::vector<int>> two_dimensional_vector;
+
+    for (int i = 0; i < number_of_rows; i++) {
+        std::vector<int> row;
+        for (int j = 0; j < number_of_cols; j++) {
+            row.emplace_back(10*i + j);
+        }
+
+        two_dimensional_vector.emplace_back(row);
+    }
+
+//    print_2d(two_dimensional_vector);
+
+
+    vector<ExchangeRate> exchangeVector;
+    fill_exchange(exchangeVector);
+
+    cout << min_date(exchangeVector) << endl;
+    //string min_date(std::vector<ExchangeRate> exchange_rate){
+    return 0;
+}
