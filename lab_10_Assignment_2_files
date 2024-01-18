@@ -26,7 +26,7 @@ int main()
     file.close();
     
     
-    file.open("plik1.txt", std::ios::out);
+    file.open("reverse.txt", std::ios::out);
     if (file.is_open()) {
         std::cout << "File was correctly opened!" << std::endl;
     }
